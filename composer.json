@@ -1,6 +1,6 @@
 {
-    "name": "microsoft/ssrs-wrapper",
-    "description": "SSRS Wrapper are classes designed to facilitate the integration with Microsoft SQL Reporting Services via URL calls",
+    "name": "denysxavier/ssrs-wrapper",
+    "description": "SSRS Wrapper are classes designed to facilitate the integration with Microsoft SQL Reporting Services via URL calls.",
     "type": "library",
     "license": "Apache-2.0",
     "homepage": "https://github.com/DenysXavier/SSRSWrapper",
@@ -22,7 +22,7 @@
     "require-dev": {},
     "autoload": {
         "psr-4": {
-            "Microsoft\\SSRSWrapper\\": "src/"
+            "DenysXavier\\SSRSWrapper\\": "src/"
         }
     }
 }
