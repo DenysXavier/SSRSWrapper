@@ -19,7 +19,7 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * URL handler responsible for calling the exposed URL from SQL Server Reporting Service
+ * URL handler responsible for calling the exposed URL from SQL Server Reporting Services
  */
 class SSRSWrapper
 {
