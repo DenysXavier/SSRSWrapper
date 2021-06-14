@@ -19,10 +19,18 @@
         "php": ">=7.1",
         "ext-curl": "*"
     },
-    "require-dev": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpmd/phpmd": "^2.10"
+    },
     "autoload": {
         "psr-4": {
             "DenysXavier\\SSRSWrapper\\": "src/"
         }
+    },
+    "scripts": {
+        "cs": "php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+        "md": "php ./vendor/phpmd/phpmd/src/bin/phpmd ./src ansi ./rulesets.xml",
+        "cbf": "php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
     }
 }
