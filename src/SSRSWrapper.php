@@ -36,6 +36,11 @@ class SSRSWrapper
     private string $virtualDirectory;
 
     /**
+     * @var AuthenticationInterface $auth
+     */
+    private AuthenticationInterface $auth;
+
+    /**
      * Creates a new instance of SSRSWrapper
      * 
      * @param string $host             The host address where an instance of a Report Server application is located on your network
@@ -47,7 +52,7 @@ class SSRSWrapper
         $this->virtualDirectory = $virtualDirectory;
     }
 
-    public function setHost(string $host)
+    public function setHost(string $host): void
     {
         $this->host = $host;
     }
@@ -57,7 +62,7 @@ class SSRSWrapper
         return $this->host;
     }
 
-    public function setVirtualDirectory(string $virtualDirectory)
+    public function setVirtualDirectory(string $virtualDirectory): void
     {
         $this->virtualDirectory = $virtualDirectory;
     }
@@ -67,18 +72,33 @@ class SSRSWrapper
         return $this->virtualDirectory;
     }
 
+    public function setAuth(AuthenticationInterface $auth): void
+    {
+        $this->auth = $auth;
+    }
+
+    public function getAuth(): AuthenticationInterface
+    {
+        return $this->auth;
+    }
+
     public function export(Report $report, string $filename, string $format = "PDF"): void
     {
+        $config = array();
+
         $parameters = $report->getParams();
         $parameters['rs:Format'] = $format;
 
-        $url = $this->server . '/' . $this->instance . '?' . urlencode($report->getPath()) . "&" . http_build_query($parameters);
+        $config[CURLOPT_URL] = $this->host . '/' . $this->virtualDirectory . '?' . urlencode($report->getPath()) . "&" . http_build_query($parameters);
         $fileHandler = fopen($filename, 'w');
 
-        $curlHandler = curl_init($url);
+        $this->auth->configure($config);
 
-        curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curlHandler, CURLOPT_FILE, $fileHandler);
+        $config[CURLOPT_RETURNTRANSFER] = true;
+        $config[CURLOPT_FILE] = $fileHandler;
+
+        $curlHandler = curl_init();
+        curl_setopt_array($curlHandler, $config);
 
         curl_exec($curlHandler);
 
