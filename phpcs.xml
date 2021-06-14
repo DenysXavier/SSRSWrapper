@@ -5,8 +5,8 @@
     <file>src</file>
 
     <arg name="basepath" value="."/>
+    <arg name="severity" value="1"/>
     <arg name="colors"/>
-    <arg value="n"/>
 
     <rule ref="PEAR">
         <exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag"/>
@@ -29,6 +29,13 @@
 
     <rule ref="Generic.Commenting.DocComment.MissingShort">
         <severity>0</severity>
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="90" />
+            <property name="absoluteLineLimit" value="100" />
+            <property name="ignoreComments" value="true" />
+        </properties>
     </rule>
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
     <rule ref="Generic.PHP.LowerCaseKeyword"/>
