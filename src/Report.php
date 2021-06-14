@@ -55,6 +55,10 @@ class Report
         return $this->path;
     }
 
+    public function getParams(): array
+    {
+        return $this->parameters;
+    }
     /**
      * Add a new parameter to the collection of parameters or overwrite the previous value if the parameter already exists in the collection.
      * 

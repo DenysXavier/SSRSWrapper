@@ -66,4 +66,23 @@ class SSRSWrapper
     {
         return $this->virtualDirectory;
     }
+
+    public function export(Report $report, string $filename, string $format = "PDF"): void
+    {
+        $parameters = $report->getParams();
+        $parameters['rs:Format'] = $format;
+
+        $url = $this->server . '/' . $this->instance . '?' . urlencode($report->getPath()) . "&" . http_build_query($parameters);
+        $fileHandler = fopen($filename, 'w');
+
+        $curlHandler = curl_init($url);
+
+        curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlHandler, CURLOPT_FILE, $fileHandler);
+
+        curl_exec($curlHandler);
+
+        fclose($fileHandler);
+        curl_close($curlHandler);
+    }
 }
