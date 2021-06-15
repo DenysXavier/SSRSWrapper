@@ -71,18 +71,4 @@ class Report
     {
         $this->parameters[$name] = $value;
     }
-
-    /**
-     * Removes a parameter from the collection if it exists
-     * 
-     * @param string $name The name of the parameter
-     * 
-     * @return void
-     */
-    public function removeParam(string $name): void
-    {
-        if (array_key_exists($name, $this->parameters)) {
-            unset($this->parameters[$name]);
-        }
-    }
 }
