@@ -27,9 +27,11 @@
         <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
     </rule>
 
+    <rule ref="Generic.Arrays.ArrayIndent"/>
     <rule ref="Generic.Commenting.DocComment.MissingShort">
         <severity>0</severity>
     </rule>
+    <rule ref="Generic.Commenting.Todo"/>
     <rule ref="Generic.Files.LineLength">
         <properties>
             <property name="lineLimit" value="90" />
@@ -37,10 +39,19 @@
             <property name="ignoreComments" value="true" />
         </properties>
     </rule>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
+    <rule ref="Generic.NamingConventions.ConstructorName"/>
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
     <rule ref="Generic.PHP.LowerCaseKeyword"/>
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
 
+    <rule ref="PSR2.Classes.PropertyDeclaration"/>
     <rule ref="PSR2.Files.EndFileNewline"/>
+    <rule ref="PSR2.Methods.MethodDeclaration"/>
+
     <rule ref="PSR12.Files.OpenTag"/>
+
+    <rule ref="Squiz.Commenting.VariableComment"/>
+
+    <rule ref="Zend.Files.ClosingTag"/>
 </ruleset>
