@@ -42,17 +42,38 @@ class ReportTest extends TestCase
     public function addParamsWithDifferentNamesCreatesADistinctCollection()
     {
         $expected = [
-            "param1"=>self::$faker->word(),
-            "param2"=>self::$faker->randomNumber(),
-            "param3"=>self::$faker->date()
+            "param1" => self::$faker->word(),
+            "param2" => self::$faker->randomNumber(),
+            "param3" => self::$faker->date()
         ];
 
         $report = new Report("/fake/path");
 
-        foreach($expected as $param => $value){
+        foreach ($expected as $param => $value) {
             $report->addParam($param, $value);
         }
 
         $this->assertEquals($expected, $report->getParams());
+    }
+
+    /**
+     * @test
+     */
+    public function addNewParamWithAnAlreadyUsedNameOverwritesOldValue()
+    {
+        $report = new Report("/fake/path");
+
+        $oldValue = self::$faker->word;
+        $newValue = self::$faker->randomNumber();
+
+        $report->addParam("param", $oldValue);
+        $this->assertEquals($oldValue, $report->getParam("param"));
+
+        $report->addParam("param", $newValue);
+        $this->assertNotEquals($oldValue, $report->getParam("param"));
+        $this->assertEquals($newValue, $report->getParam("param"));
+
+        $quantityOfItemsInTheCollection = count($report->getParams());
+        $this->assertEquals(1, $quantityOfItemsInTheCollection);
     }
 }
