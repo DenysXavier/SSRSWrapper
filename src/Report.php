@@ -59,6 +59,12 @@ class Report
     {
         return $this->parameters;
     }
+
+    public function getParam(string $name)
+    {
+        return $this->parameters[$name];
+    }
+
     /**
      * Add a new parameter to the collection of parameters or overwrite the previous value if the parameter already exists in the collection.
      * 
