@@ -3,6 +3,7 @@
     <description>Coding standard for SSRS Wrapper.</description>
 
     <file>src</file>
+    <exclude-pattern>*/tests/*</exclude-pattern>
 
     <arg name="basepath" value="."/>
     <arg name="severity" value="1"/>
