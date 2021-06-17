@@ -18,6 +18,7 @@
 
 namespace DenysXavier\SSRSWrapper;
 
+ini_set("display_errors", 1);
 /**
  * URL handler responsible for calling the exposed URL from SQL Server Reporting Services
  */
@@ -84,7 +85,7 @@ class SSRSWrapper
 
     public function export(Report $report, string $filename, string $format = "PDF"): void
     {
-        $config = array();
+        $config = [];
 
         $parameters = $report->getParams();
         $parameters['rs:Format'] = $format;
@@ -103,6 +104,37 @@ class SSRSWrapper
         curl_exec($curlHandler);
 
         fclose($fileHandler);
+        curl_close($curlHandler);
+    }
+
+    public function download(Report $report, string $downloadName, string $format = "PDF"): void
+    {
+        $config = [];
+
+        $parameters = $report->getParams();
+        $parameters['rs:Format'] = $format;
+
+        $config[CURLOPT_URL] = $this->host . '/' . $this->virtualDirectory . '?' . urlencode($report->getPath()) . "&" . http_build_query($parameters);
+
+        $this->auth->configure($config);
+
+        $streamFunction = function ($ch, $data) {
+            echo $data;
+
+            ob_flush();
+            flush();
+            return strlen($data);
+        };
+
+        $config[CURLOPT_WRITEFUNCTION] = $streamFunction;
+
+        $curlHandler = curl_init();
+        curl_setopt_array($curlHandler, $config);
+
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . $downloadName . '"');
+
+        curl_exec($curlHandler);
         curl_close($curlHandler);
     }
 }
