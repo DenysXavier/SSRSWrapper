@@ -18,7 +18,6 @@
 
 namespace DenysXavier\SSRSWrapper;
 
-ini_set("display_errors", 1);
 /**
  * URL handler responsible for calling the exposed URL from SQL Server Reporting Services
  */
@@ -38,6 +37,7 @@ class SSRSWrapper
 
     /**
      * @var AuthenticationInterface $auth
+     *      Method of authentication to the SQL Server Reporting Services
      */
     private AuthenticationInterface $auth;
 
