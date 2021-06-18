@@ -65,4 +65,31 @@ class SSRSWrapperTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * @test
+     */
+    public function AnyReportParameterMustBeAddedToTheURLAsQueryString()
+    {
+        $host = 'http://' . self::$faker->domainName;
+        $virtualDirectory = self::$faker->word;
+        $reportPath = self::$faker->regexify('[a-z0-9]{5}/[a-z0-9]{5}');
+        $reportParameters = [
+            self::$faker->word => self::$faker->word,
+            self::$faker->word => self::$faker->randomNumber()
+        ];
+
+        $expected = $host . '/' . $virtualDirectory . '?' . urlencode($reportPath) . "&" . http_build_query($reportParameters);
+
+        $report = new Report($reportPath);
+        foreach ($reportParameters as $param => $value) {
+            $report->addParam($param, $value);
+        }
+
+        $ssrs = new SSRSWrapper($host, $virtualDirectory);
+
+        $actual = $ssrs->buildURL($report);
+
+        $this->assertEquals($expected, $actual);
+    }
 }

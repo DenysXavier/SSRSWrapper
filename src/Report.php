@@ -58,8 +58,11 @@ class Report
     public function getParams(): array
     {
         return $this->parameters;
+    }    
+    public function hasParams():bool
+    {
+        return count($this->parameters)>0;
     }
-
     public function getParam(string $name)
     {
         return $this->parameters[$name];

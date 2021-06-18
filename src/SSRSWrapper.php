@@ -85,7 +85,18 @@ class SSRSWrapper
 
     public function buildURL(Report $report)
     {
-        return $this->host . '/' . $this->virtualDirectory . '?' . urlencode($report->getPath());
+        $server = $this->host . '/' . urlencode($this->virtualDirectory);
+        $encodedReportPath = urlencode($report->getPath());
+
+        $url = $server . '?' . $encodedReportPath;
+        if ($report->hasParams()) {
+            $url .= '&' . http_build_query($report->getParams());
+        }
+
+
+
+
+        return $url;
     }
 
     public function export(Report $report, string $filename, string $format = "PDF"): void
