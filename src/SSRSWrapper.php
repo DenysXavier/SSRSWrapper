@@ -114,10 +114,9 @@ class SSRSWrapper
     {
         $config = [];
 
-        $parameters = $report->getParams();
         $parameters['rs:Format'] = $format;
 
-        $config[CURLOPT_URL] = $this->host . '/' . $this->virtualDirectory . '?' . urlencode($report->getPath()) . "&" . http_build_query($parameters);
+        $config[CURLOPT_URL] = $this->buildURL($report, $parameters);
         $fileHandler = fopen($filename, 'w');
 
         $this->auth->configure($config);
@@ -138,10 +137,9 @@ class SSRSWrapper
     {
         $config = [];
 
-        $parameters = $report->getParams();
         $parameters['rs:Format'] = $format;
 
-        $config[CURLOPT_URL] = $this->host . '/' . $this->virtualDirectory . '?' . urlencode($report->getPath()) . "&" . http_build_query($parameters);
+        $config[CURLOPT_URL] = $this->buildURL($report, $parameters);
 
         $this->auth->configure($config);
 
