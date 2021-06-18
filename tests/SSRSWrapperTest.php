@@ -18,6 +18,7 @@
 
 namespace DenysXavier\SSRSWrapper\Tests;
 
+use DenysXavier\SSRSWrapper\Report;
 use DenysXavier\SSRSWrapper\SSRSWrapper;
 use Faker\{Factory, Generator};
 use PHPUnit\Framework\TestCase;
@@ -44,5 +45,24 @@ class SSRSWrapperTest extends TestCase
         $ssrs = new SSRSWrapper("http://fake-host");
 
         $this->assertEquals("ReportServer", $ssrs->getVirtualDirectory());
+    }
+
+    /**
+     * @test
+     */
+    public function URLisBuiltAsHostAndVirtualDirectoryAndReportPath()
+    {
+        $host = 'http://' . self::$faker->domainName;
+        $virtualDirectory = self::$faker->word;
+        $reportPath = self::$faker->regexify('[a-z0-9]{5}/[a-z0-9]{5}');
+
+        $expected = $host . '/' . $virtualDirectory . '?' . urlencode($reportPath);
+
+        $report = new Report($reportPath);
+        $ssrs = new SSRSWrapper($host, $virtualDirectory);
+
+        $actual = $ssrs->buildURL($report);
+
+        $this->assertEquals($expected, $actual);
     }
 }

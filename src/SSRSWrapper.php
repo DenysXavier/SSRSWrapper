@@ -83,6 +83,11 @@ class SSRSWrapper
         return $this->auth;
     }
 
+    public function buildURL(Report $report)
+    {
+        return $this->host . '/' . $this->virtualDirectory . '?' . urlencode($report->getPath());
+    }
+
     public function export(Report $report, string $filename, string $format = "PDF"): void
     {
         $config = [];
