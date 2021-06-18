@@ -83,20 +83,31 @@ class SSRSWrapper
         return $this->auth;
     }
 
-    public function buildURL(Report $report)
+    public function buildURL(Report $report, array $extraArguments = null): string
     {
         $server = $this->host . '/' . urlencode($this->virtualDirectory);
         $encodedReportPath = urlencode($report->getPath());
+        $extraQueryString = $this->generateExtraQueryStrings($report->getParams(), $extraArguments);
 
-        $url = $server . '?' . $encodedReportPath;
-        if ($report->hasParams()) {
-            $url .= '&' . http_build_query($report->getParams());
+        return $server . '?' . $encodedReportPath . $extraQueryString;
+    }
+
+    private function generateExtraQueryStrings(?array ...$map): string
+    {
+        $values = [];
+        $extraQueryString = '';
+
+        foreach ($map as $element) {
+            if (is_array($element)) {
+                $values = array_merge($values, $element);
+            }
         }
 
+        if (count($values) > 0) {
+            $extraQueryString = '&' . http_build_query($values);
+        }
 
-
-
-        return $url;
+        return $extraQueryString;
     }
 
     public function export(Report $report, string $filename, string $format = "PDF"): void
