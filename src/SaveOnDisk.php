@@ -35,6 +35,11 @@ class SaveOnDisk implements ExportBehaviorInterface
      */
     private string $filename;
 
+    /**
+     * Creates a new instace of SaveOnDisk behavior
+     * 
+     * @param string $filename Filename or path to where the report should be saved.
+     */
     public function __construct(string $filename)
     {
         $this->filename = $filename;
