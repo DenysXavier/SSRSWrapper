@@ -94,7 +94,10 @@ class SSRSWrapper
     {
         $server = $this->host . '/' . urlencode($this->virtualDirectory);
         $encodedReportPath = urlencode($report->getPath());
-        $extraQueryString = $this->generateExtraQueryStrings($report->getParams(), $extraArguments);
+        $extraQueryString = $this->generateExtraQueryStrings(
+            $report->getParams(),
+            $extraArguments
+        );
 
         return $server . '?' . $encodedReportPath . $extraQueryString;
     }
