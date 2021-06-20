@@ -53,6 +53,13 @@ class SSRSWrapper
         $this->virtualDirectory = $virtualDirectory;
     }
 
+    /** 
+     * Set the host address where an instance of a Report Server application is located on your network
+     * 
+     * @param string $host The host address where an instance of a Report Server application is located on your network
+     * 
+     * @return void
+     */
     public function setHost(string $host): void
     {
         $this->host = $host;
