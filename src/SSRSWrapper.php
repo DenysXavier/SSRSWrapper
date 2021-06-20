@@ -137,34 +137,4 @@ class SSRSWrapper
 
         curl_close($curlHandler);
     }
-
-    public function download(Report $report, string $downloadName, string $format = "PDF"): void
-    {
-        $config = [];
-
-        $parameters['rs:Format'] = $format;
-
-        $config[CURLOPT_URL] = $this->buildURL($report, $parameters);
-
-        $this->auth->configure($config);
-
-        $streamFunction = function ($ch, $data) {
-            echo $data;
-
-            ob_flush();
-            flush();
-            return strlen($data);
-        };
-
-        $config[CURLOPT_WRITEFUNCTION] = $streamFunction;
-
-        $curlHandler = curl_init();
-        curl_setopt_array($curlHandler, $config);
-
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . $downloadName . '"');
-
-        curl_exec($curlHandler);
-        curl_close($curlHandler);
-    }
 }
