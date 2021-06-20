@@ -45,6 +45,13 @@ class SaveOnDisk implements ExportBehaviorInterface
         $this->filename = $filename;
     }
 
+    /**
+     * Creates a file handler and adds it to the cURL configuration array.
+     * 
+     * @param array &$options The configuration array for cURL itself.
+     * 
+     * @return void
+     */
     public function setup(array &$options): void
     {
         $this->fileHandler = fopen($this->filename, 'w');
