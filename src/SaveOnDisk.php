@@ -16,31 +16,32 @@
  * limitations under the License.
  */
 
-namespace DenysXavier\SSRSWrapper\Tests;
-
-use DenysXavier\SSRSWrapper\SaveOnDisk;
-use org\bovigo\vfs\vfsStream;
-use PHPUnit\Framework\TestCase;
+namespace DenysXavier\SSRSWrapper;
 
 /**
- * Unit tests for Report class
+ * 
  */
-class SaveOnDiskTest extends TestCase
+class SaveOnDisk implements ExportBehaviorInterface
 {
-    /**
-     * @test
-     */
-    public function anFileHandlerMustBeSetUpOnCURLOptions()
+    private $fileHandler;
+    private string $filename;
+
+    public function __construct(string $filename)
     {
-        $options = [];
+        $this->filename = $filename;
+    }
 
-        $filepath = vfsStream::setup()->url() . '/file.pdf';
+    public function setup(array &$options): void
+    {
+        $this->fileHandler = fopen($this->filename, 'w');
 
-        $behavior = new SaveOnDisk($filepath);
-        $behavior->setup($options);
+        $options[CURLOPT_FILE] = $this->fileHandler;
+    }
 
-        $this->assertTrue(is_resource($options[CURLOPT_FILE]));
-
-        $behavior->dispose();
+    public function dispose(): void
+    {
+        if (!is_resource($this->fileHandler)) {
+            fclose($this->fileHandler);
+        }
     }
 }
