@@ -90,6 +90,14 @@ class SSRSWrapper
         return $this->auth;
     }
 
+    /**
+     * Builds an URL for the report specific for this SSRS host and append extra arguments if they are provided.
+     * 
+     * @param Report $report         The report that will be called by the service.
+     * @param array  $extraArguments An assossiative array that will be appended to the end of the URL as query string.
+     * 
+     * @return string
+     */
     public function buildURL(Report $report, array $extraArguments = null): string
     {
         $server = $this->host . '/' . urlencode($this->virtualDirectory);
@@ -103,9 +111,9 @@ class SSRSWrapper
     }
 
     /**
-     * Generates extra query strings for buildURL method if needed
+     * Generates extra query strings for buildURL method if needed.
      * 
-     * @param (null|array)[] ...$map Any number of arguments comprised of associative arrays
+     * @param (null|array)[] ...$map Any number of arguments comprised of associative arrays.
      * 
      * @return string
      */
