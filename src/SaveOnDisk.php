@@ -19,7 +19,7 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * 
+ * Behavior for the SSRSWrapper::export method. In this case, all of the report content will be saved onto the disk (file system) or, if a scheme is provided, a protocol handler will be searched for that scheme. (@see https://www.php.net/manual/en/wrappers.php)
  */
 class SaveOnDisk implements ExportBehaviorInterface
 {
