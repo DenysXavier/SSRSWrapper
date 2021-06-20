@@ -85,6 +85,11 @@ class SSRSWrapper
         $this->auth = $auth;
     }
 
+    /**
+     * Gets the method of authentication to the SQL Server Reporting Services
+     * 
+     * @return AuthenticationInterface
+     */
     public function getAuth(): AuthenticationInterface
     {
         return $this->auth;
