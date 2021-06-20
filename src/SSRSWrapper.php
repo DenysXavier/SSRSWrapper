@@ -117,6 +117,15 @@ class SSRSWrapper
         return $extraQueryString;
     }
 
+    /**
+     * Interacts with SQL Server Reporting Services and retrieves the report in a specific format. How the report will be handled depends on the export behavior provided.
+     * 
+     * @param Report                  $report         The report to be exported.
+     * @param ExportBehaviorInterface $exportBehavior How the export will handle the request to retrieve the report, for example, a SaveOnDisk instance.
+     * @param string                  $format         A string defining an output format for the report. The default value is PDF, but others options depends on the renderers available in SSRS. (@See https://docs.microsoft.com/en-us/sql/reporting-services/report-builder/export-reports-report-builder-and-ssrs?view=sql-server-ver15#ExportFormats)
+     * 
+     * @return void
+     */
     public function export(
         Report $report,
         ExportBehaviorInterface $exportBehavior,
