@@ -110,26 +110,24 @@ class SSRSWrapper
         return $extraQueryString;
     }
 
-    public function export(Report $report, string $filename, string $format = "PDF"): void
+    public function export(Report $report, ExportBehaviorInterface $exportBehavior, string $format = "PDF"): void
     {
         $config = [];
 
         $parameters['rs:Format'] = $format;
 
         $config[CURLOPT_URL] = $this->buildURL($report, $parameters);
-        $fileHandler = fopen($filename, 'w');
 
         $this->auth->configure($config);
 
-        $config[CURLOPT_RETURNTRANSFER] = true;
-        $config[CURLOPT_FILE] = $fileHandler;
+        $exportBehavior->setup($config);
 
         $curlHandler = curl_init();
         curl_setopt_array($curlHandler, $config);
-
         curl_exec($curlHandler);
 
-        fclose($fileHandler);
+        $exportBehavior->dispose();
+
         curl_close($curlHandler);
     }
 
