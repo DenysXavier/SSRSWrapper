@@ -117,8 +117,11 @@ class SSRSWrapper
         return $extraQueryString;
     }
 
-    public function export(Report $report, ExportBehaviorInterface $exportBehavior, string $format = "PDF"): void
-    {
+    public function export(
+        Report $report,
+        ExportBehaviorInterface $exportBehavior,
+        string $format = "PDF"
+    ): void {
         $config = [];
 
         $parameters['rs:Format'] = $format;
