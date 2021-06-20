@@ -80,13 +80,20 @@ class SSRSWrapper
         return $this->virtualDirectory;
     }
 
+    /**
+     * Sets the method of authentication to the SQL Server Reporting Services.
+     * 
+     * @param AuthenticationInterface $auth The method of authentication to the SQL Server Reporting Services, for example, an instance of NTLMAuth.
+     * 
+     * @return void
+     */
     public function setAuth(AuthenticationInterface $auth): void
     {
         $this->auth = $auth;
     }
 
     /**
-     * Gets the method of authentication to the SQL Server Reporting Services
+     * Gets the method of authentication to the SQL Server Reporting Services.
      * 
      * @return AuthenticationInterface
      */
