@@ -75,6 +75,11 @@ class SSRSWrapper
         $this->virtualDirectory = $virtualDirectory;
     }
 
+    /**
+     * Gets the name of the virtual directory that corresponds to the application that gets the request.
+     * 
+     * @return string
+     */
     public function getVirtualDirectory(): string
     {
         return $this->virtualDirectory;
