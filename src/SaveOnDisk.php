@@ -23,6 +23,10 @@ namespace DenysXavier\SSRSWrapper;
  */
 class SaveOnDisk implements ExportBehaviorInterface
 {
+    /**
+     * @var resource $fileHandler
+     *      Pointer to the resource opened by fopen.
+     */
     private $fileHandler;
     private string $filename;
 
