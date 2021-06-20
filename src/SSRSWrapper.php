@@ -19,13 +19,13 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * URL handler responsible for calling the exposed URL from SQL Server Reporting Services
+ * URL handler responsible for calling the exposed URL from SQL Server Reporting Services.
  */
 class SSRSWrapper
 {
     /** 
      * @var string $host 
-     *      The host address where an instance of a Report Server application is located on your network
+     *      The host address where an instance of a Report Server application is located on your network.
      */
     private string $host;
 
@@ -37,15 +37,15 @@ class SSRSWrapper
 
     /**
      * @var AuthenticationInterface $auth
-     *      Method of authentication to the SQL Server Reporting Services
+     *      Method of authentication to the SQL Server Reporting Services.
      */
     private AuthenticationInterface $auth;
 
     /**
      * Creates a new instance of SSRSWrapper
      * 
-     * @param string $host             The host address where an instance of a Report Server application is located on your network
-     * @param string $virtualDirectory Name of the virtual directory that corresponds to the application that gets the request
+     * @param string $host             The host address where an instance of a Report Server application is located on your network.
+     * @param string $virtualDirectory Name of the virtual directory that corresponds to the application that gets the request.
      */
     public function __construct(string $host, string $virtualDirectory = "ReportServer")
     {
@@ -54,9 +54,9 @@ class SSRSWrapper
     }
 
     /** 
-     * Set the host address where an instance of a Report Server application is located on your network
+     * Set the host address where an instance of a Report Server application is located on your network.
      * 
-     * @param string $host The host address where an instance of a Report Server application is located on your network
+     * @param string $host The host address where an instance of a Report Server application is located on your network.
      * 
      * @return void
      */
@@ -65,6 +65,11 @@ class SSRSWrapper
         $this->host = $host;
     }
 
+    /**
+     * Gets the host address where an instance of a Report Server application is located on your network.
+     * 
+     * @return string
+     */
     public function getHost(): string
     {
         return $this->host;
