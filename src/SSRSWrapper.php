@@ -99,6 +99,13 @@ class SSRSWrapper
         return $server . '?' . $encodedReportPath . $extraQueryString;
     }
 
+    /**
+     * Generates extra query strings for buildURL method if needed
+     * 
+     * @param (null|array)[] ...$map Any number of arguments comprised of associative arrays
+     * 
+     * @return string
+     */
     private function generateExtraQueryStrings(?array ...$map): string
     {
         $values = [];
