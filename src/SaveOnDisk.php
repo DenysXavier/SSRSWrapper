@@ -28,6 +28,11 @@ class SaveOnDisk implements ExportBehaviorInterface
      *      Pointer to the resource opened by fopen.
      */
     private $fileHandler;
+
+    /**
+     * @var string $filename
+     *      Filename or path to where the report should be saved.
+     */
     private string $filename;
 
     public function __construct(string $filename)
