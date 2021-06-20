@@ -46,9 +46,9 @@ class SaveOnDisk implements ExportBehaviorInterface
     }
 
     /**
-     * Creates a file handler and adds it to the cURL configuration array.
+     * Creates a file handler for writing on disk and adds it to the cURL configuration array.
      * 
-     * @param array &$options The configuration array for cURL itself.
+     * @param array $options The configuration array for cURL itself.
      * 
      * @return void
      */
@@ -59,6 +59,11 @@ class SaveOnDisk implements ExportBehaviorInterface
         $options[CURLOPT_FILE] = $this->fileHandler;
     }
 
+    /**
+     * Closes the file handler resource used by cURL.
+     * 
+     * @return void
+     */
     public function dispose(): void
     {
         if (!is_resource($this->fileHandler)) {
