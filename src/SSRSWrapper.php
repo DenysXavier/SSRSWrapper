@@ -70,6 +70,13 @@ class SSRSWrapper
         return $this->host;
     }
 
+    /**
+     * Sets the name of the virtual directory that corresponds to the application that gets the request.
+     * 
+     * @param string $virtualDirectory Name of the virtual directory that corresponds to the application that gets the request.
+     * 
+     * @return void
+     */
     public function setVirtualDirectory(string $virtualDirectory): void
     {
         $this->virtualDirectory = $virtualDirectory;
