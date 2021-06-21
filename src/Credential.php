@@ -31,6 +31,11 @@ class Credential
      *      Plain text password used for authentication.
      */
     private string $password;
+
+    /**
+     * @var string $domain
+     *      Domain or realm in wich the user belongs.
+     */
     private string $domain;
 
     public function __construct(string $username, string $password, string $domain = '')
