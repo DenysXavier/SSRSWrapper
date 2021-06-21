@@ -25,6 +25,11 @@ class Credential
      *      Username used for authentication.
      */
     private string $username;
+
+    /**
+     * @var string $password
+     *      Plain text password used for authentication.
+     */
     private string $password;
     private string $domain;
 
