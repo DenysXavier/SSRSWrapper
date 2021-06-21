@@ -23,6 +23,10 @@ namespace DenysXavier\SSRSWrapper;
  */
 class Download implements ExportBehaviorInterface
 {
+    /**
+     * @var string $filename
+     *      Name of the file to be used by the browser when the data is dispatched.
+     */
     private string $filename;
 
     public function __construct(string $filename)
