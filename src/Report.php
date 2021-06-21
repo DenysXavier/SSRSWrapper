@@ -45,7 +45,14 @@ class Report
         $this->path = $path;
     }
 
-    public function setPath(string $path)
+    /**
+     * Sets the path to the published .rdl file.
+     * 
+     * @param string $path Path to the published .rdl file without the extension.
+     * 
+     * @return void
+     */
+    public function setPath(string $path): void
     {
         $this->path = $path;
     }
