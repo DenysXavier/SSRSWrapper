@@ -35,6 +35,12 @@ class NTLMAuth implements AuthenticationInterface
      */
     private bool $unrestricted;
 
+    /**
+     * Creates a new instance of NTLMAuth.
+     * 
+     * @param Credential $credential Credentials information for user authentication.
+     * @param bool $unrestricted Boolean value to indicates whether cURL should keep sending the username and password when following locations, even when the hostname has changed.
+     */
     public function __construct(Credential $credential, bool $unrestricted = false)
     {
         $this->credential = $credential;
