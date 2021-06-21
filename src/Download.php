@@ -34,6 +34,13 @@ class Download implements ExportBehaviorInterface
         $this->filename = $filename;
     }
 
+    /**
+     * Sets up a streaming function for the cURL handler. It also sends the necessary HTTP headers for the content disposition.
+     * 
+     * @param array $options The configuration array for cURL itself.
+     * 
+     * @return void
+     */
     public function setup(array &$options): void
     {
         $options[CURLOPT_WRITEFUNCTION] = function ($ch, $data) {
