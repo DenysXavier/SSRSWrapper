@@ -23,6 +23,10 @@ namespace DenysXavier\SSRSWrapper;
  */
 class NTLMAuth implements AuthenticationInterface
 {
+    /**
+     * @var Credential $credential
+     *      Credentials information for user authentication.
+     */
     private Credential $credential;
     private bool $unrestricted;
 
@@ -33,9 +37,9 @@ class NTLMAuth implements AuthenticationInterface
     }
 
     /**
-     * Setup options for the cURL to handle NTLM authentication protocol
+     * Sets up options for the cURL to handle NTLM authentication protocol.
      * 
-     * @param array $options The array where the cURL handler options are
+     * @param array $options The array where the cURL handler options are.
      * 
      * @return void
      */
