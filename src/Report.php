@@ -60,6 +60,13 @@ class Report
         return $this->parameters;
     }
 
+    /**
+     * Gets a previously registered parameter by its name
+     * 
+     * @param string $name Parameter name
+     * 
+     * @return null|string|int|float|bool
+     */
     public function getParam(string $name)
     {
         return $this->parameters[$name];
