@@ -184,7 +184,9 @@ class SSRSWrapper
 
         $config[CURLOPT_URL] = $this->buildURL($report, $parameters);
 
-        $this->auth->configure($config);
+        if (isset($this->auth)) {
+            $this->auth->configure($config);
+        }
 
         $exportBehavior->setup($config);
 
