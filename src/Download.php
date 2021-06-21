@@ -44,6 +44,11 @@ class Download implements ExportBehaviorInterface
         header('Content-Disposition: attachment; filename="' . $this->filename . '"');
     }
 
+    /**
+     * Does nothing since no resource is used during download setup event.
+     * 
+     * @return void
+     */
     public function dispose(): void
     {
     }
