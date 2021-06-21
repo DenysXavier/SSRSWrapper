@@ -19,14 +19,14 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * Interface for methods of authentication to SQL Server Reporting Services virtual directory
+ * Interface for methods of authentication to SQL Server Reporting Services virtual directory.
  */
 interface AuthenticationInterface
 {
     /**
-     * Configure an authentication method modifying the options array that will be used in the cURL handler
+     * Configure an authentication method modifying the options array that will be used in the cURL handler.
      * 
-     * @param array $options The array where the cURL handler options are
+     * @param array $options The array where the cURL handler options are.
      * 
      * @return void
      */
