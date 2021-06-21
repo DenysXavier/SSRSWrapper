@@ -29,6 +29,11 @@ class Download implements ExportBehaviorInterface
      */
     private string $filename;
 
+    /**
+     * Create a new instance of Download.
+     * 
+     * @param string $filename Name of the file to be used by the browser when the data is dispatched.
+     */
     public function __construct(string $filename)
     {
         $this->filename = $filename;
