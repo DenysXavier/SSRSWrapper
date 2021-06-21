@@ -19,7 +19,7 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * Interface for methods of authentication to SQL Server Reporting Services virtual directory
+ * Authentication method for SQL Server Reporting Services virtual directory using NTLM.
  */
 class NTLMAuth implements AuthenticationInterface
 {
@@ -30,7 +30,7 @@ class NTLMAuth implements AuthenticationInterface
     private Credential $credential;
 
     /**
-     * @var bool $unrestricted
+     * @var boolean $unrestricted
      *      Indicates whether cURL should keep sending the username and password when following locations, even when the hostname has changed.
      */
     private bool $unrestricted;
@@ -38,8 +38,8 @@ class NTLMAuth implements AuthenticationInterface
     /**
      * Creates a new instance of NTLMAuth.
      * 
-     * @param Credential $credential Credentials information for user authentication.
-     * @param bool $unrestricted Boolean value to indicates whether cURL should keep sending the username and password when following locations, even when the hostname has changed.
+     * @param Credential $credential   Credentials information for user authentication.
+     * @param bool       $unrestricted Boolean value to indicates whether cURL should keep sending the username and password when following locations, even when the hostname has changed.
      */
     public function __construct(Credential $credential, bool $unrestricted = false)
     {
