@@ -52,12 +52,17 @@ class Credential
         $this->domain = $domain;
     }
 
-    public function buildUSERPWD()
+    /**
+     * Builds a formatted string to be used as credentials for the cURL connection.
+     * 
+     * @return string
+     */
+    public function buildUSERPWD(): string
     {
         $userpwd = "";
 
         if (!empty($this->domain)) {
-            $userpwd .= $this->domain . "/";
+            $userpwd = $this->domain . "/";
         }
 
         $userpwd .= $this->username . ":" . $this->password;
