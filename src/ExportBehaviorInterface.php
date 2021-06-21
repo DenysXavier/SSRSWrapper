@@ -24,12 +24,18 @@ namespace DenysXavier\SSRSWrapper;
 interface ExportBehaviorInterface
 {
     /**
-     * Adds or modifies the values of the array that will be used to configure the cURL resource.
+     * Adds or modifies the values of the array that will be used to configure the cURL resource. This is called before cURL is executed.
      * 
      * @param array $options The configuration array for cURL itself.
      * 
      * @return void
      */
     public function setup(array &$options): void;
+
+    /**
+     * Disposes any resource created during the setup event. This is called after cURL is executed and before cURL resource itself is disposed.
+     * 
+     * @return void
+     */
     public function dispose(): void;
 }
