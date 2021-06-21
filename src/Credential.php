@@ -18,6 +18,9 @@
 
 namespace DenysXavier\SSRSWrapper;
 
+/**
+ * Class that holds information like username and password that is intented to be used by any authentication class.
+ */
 class Credential
 {
     /**
