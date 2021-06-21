@@ -19,26 +19,26 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * A published .rdl report to be called on SQL Server Reporting Services
+ * A published .rdl report to be called on SQL Server Reporting Services.
  */
 class Report
 {
     /**
      * @var string $path
-     *      Path to the published .rdl file without the extension
+     *      Path to the published .rdl file without the extension.
      */
     private string $path;
 
     /**
      * @var array $parameters
-     *      An associative array with parameters
+     *      An associative array with parameters.
      */
     private array $parameters = [];
 
     /**
-     * Creates a new instance of Report
+     * Creates a new instance of Report.
      * 
-     * @param string $path Path to the published .rdl file without the extension
+     * @param string $path Path to the published .rdl file without the extension.
      */
     public function __construct(string $path)
     {
@@ -50,6 +50,11 @@ class Report
         $this->path = $path;
     }
 
+    /**
+     * Gets the path to the published .rdl file.
+     * 
+     * @return string
+     */
     public function getPath(): string
     {
         return $this->path;
@@ -66,7 +71,7 @@ class Report
     }
 
     /**
-     * Gets a previously registered parameter by its name
+     * Gets a previously registered parameter by its name.
      * 
      * @param string $name Parameter name.
      * 
