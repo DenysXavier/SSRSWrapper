@@ -38,6 +38,13 @@ class Credential
      */
     private string $domain;
 
+    /**
+     * Creates a new instance of Credential.
+     * 
+     * @param string $username Username used for authentication.
+     * @param string $password Plain text password used for authentication.
+     * @param string $domain   Domain or realm in wich the user belongs.
+     */
     public function __construct(string $username, string $password, string $domain = '')
     {
         $this->username = $username;
