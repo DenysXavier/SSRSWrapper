@@ -55,6 +55,11 @@ class Report
         return $this->path;
     }
 
+    /**
+     * Gets an assossiative array with previously registered parameters for this Report instance.
+     * 
+     * @return array
+     */
     public function getParams(): array
     {
         return $this->parameters;
@@ -63,7 +68,7 @@ class Report
     /**
      * Gets a previously registered parameter by its name
      * 
-     * @param string $name Parameter name
+     * @param string $name Parameter name.
      * 
      * @return null|string|int|float|bool
      */
@@ -73,10 +78,10 @@ class Report
     }
 
     /**
-     * Add a new parameter to the collection of parameters or overwrite the previous value if the parameter already exists in the collection.
+     * Adds a new parameter to the collection of parameters or overwrites the previous value if the parameter already exists in the collection.
      * 
-     * @param string $name  The name of the parameter
-     * @param string $value The value of the parameter
+     * @param string $name  The name of the parameter.
+     * @param string $value The value of the parameter.
      * 
      * @return void
      */
