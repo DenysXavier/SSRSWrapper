@@ -19,10 +19,17 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * Interface that standardizes an exportation behavior assuming that new options for cURL might be added and any opened resource might be disposed
+ * Interface that standardizes an exportation behavior assuming that new options for cURL might be added and any opened resource might be disposed.
  */
 interface ExportBehaviorInterface
 {
+    /**
+     * Adds or modifies the values of the array that will be used to configure the cURL resource.
+     * 
+     * @param array $options The configuration array for cURL itself.
+     * 
+     * @return void
+     */
     public function setup(array &$options): void;
     public function dispose(): void;
 }
