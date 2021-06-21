@@ -20,6 +20,10 @@ namespace DenysXavier\SSRSWrapper;
 
 class Credential
 {
+    /**
+     * @var string $username
+     *      Username used for authentication.
+     */
     private string $username;
     private string $password;
     private string $domain;
