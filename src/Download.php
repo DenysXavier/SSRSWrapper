@@ -19,7 +19,7 @@
 namespace DenysXavier\SSRSWrapper;
 
 /**
- * 
+ * Behavior for the SSRSWrapper::export method. In this case, all of the report content will be dispatched directly to the user browser.
  */
 class Download implements ExportBehaviorInterface
 {
@@ -35,8 +35,6 @@ class Download implements ExportBehaviorInterface
         $options[CURLOPT_WRITEFUNCTION] = function ($ch, $data) {
             echo $data;
 
-            /*ob_flush();
-            flush();*/
             return strlen($data);
         };
 
