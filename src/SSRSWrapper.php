@@ -180,13 +180,9 @@ class SSRSWrapper
     ): void {
         $config = [];
 
-        $parameters['rs:Format'] = $format;
+        $config[CURLOPT_URL] = $this->buildURL($report, ['rs:Format' => $format]);
 
-        $config[CURLOPT_URL] = $this->buildURL($report, $parameters);
-
-        if (isset($this->auth)) {
-            $this->auth->configure($config);
-        }
+        $this->setupAuthentication($config);
 
         $exportBehavior->setup($config);
 
@@ -197,5 +193,19 @@ class SSRSWrapper
         $exportBehavior->dispose();
 
         curl_close($curlHandler);
+    }
+
+    /**
+     * Sets up authentication if any authentication method is set in the SSRSWrapper instance.
+     * 
+     * @param array $options The cURL configuration array itself.
+     * 
+     * @return void
+     */
+    private function setupAuthentication(array &$options): void
+    {
+        if (isset($this->auth)) {
+            $this->auth->configure($config);
+        }
     }
 }
