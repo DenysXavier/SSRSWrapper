@@ -18,8 +18,8 @@
 
 namespace DenysXavier\SSRSWrapper\Tests;
 
-use DenysXavier\SSRSWrapper\Report;
-use DenysXavier\SSRSWrapper\SSRSWrapper;
+use DenysXavier\SSRSWrapper\{Report, SaveOnDisk, SSRSWrapper};
+use Exception;
 use Faker\{Factory, Generator};
 use PHPUnit\Framework\TestCase;
 
@@ -122,5 +122,19 @@ class SSRSWrapperTest extends TestCase
         $actual = $ssrs->buildURL($report, $extraParameters);
 
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function anExceptionIsThrownIfAnErrorOccursDuringCURLRequest()
+    {
+        $ssrs = new SSRSWrapper("http://fake-host");
+        $report = new Report(self::$faker->regexify('[a-z0-9]{5}/[a-z0-9]{5}'));
+        $behavior = new SaveOnDisk('php://temp');
+
+        $this->expectException(Exception::class);
+
+        $ssrs->export($report, $behavior);
     }
 }

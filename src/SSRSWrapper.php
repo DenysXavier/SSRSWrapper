@@ -18,6 +18,8 @@
 
 namespace DenysXavier\SSRSWrapper;
 
+use Exception;
+
 /**
  * URL handler responsible for calling the exposed URL from SQL Server Reporting Services.
  */
@@ -186,13 +188,13 @@ class SSRSWrapper
 
         $exportBehavior->setup($config);
 
-        $curlHandler = curl_init();
-        curl_setopt_array($curlHandler, $config);
-        curl_exec($curlHandler);
-
-        $exportBehavior->dispose();
-
-        curl_close($curlHandler);
+        try {
+            $this->tryToExecuteCURLResquest($config);
+        } catch (Exception $e) {
+            throw $e;
+        } finally {
+            $exportBehavior->dispose();
+        }
     }
 
     /**
@@ -206,6 +208,31 @@ class SSRSWrapper
     {
         if (isset($this->auth)) {
             $this->auth->configure($config);
+        }
+    }
+
+    /**
+     * Try to execute a request using a cURL resource. Throws an Exception if a problem occurs.
+     * 
+     * @param array $options Options to be used by the cURL handler.
+     * 
+     * @return void
+     */
+    private function tryToExecuteCURLResquest($options): void
+    {
+        $curlHandler = curl_init();
+        curl_setopt_array($curlHandler, $options);
+        curl_exec($curlHandler);
+
+        if (curl_errno($curlHandler) > 0) {
+            $error['code'] = curl_errno($curlHandler);
+            $error['message'] = curl_error($curlHandler);
+        }
+
+        curl_close($curlHandler);
+
+        if (isset($error)) {
+            throw new Exception($error['message'], $error['code']);
         }
     }
 }
